@@ -43,7 +43,10 @@ def fix_links(text, here):
             return f"[{label}]({GH}/tree/main/docs/{os.path.dirname(base)})"
         if base.endswith((".svg", ".png", ".jpg")):
             return f"[{label}]({GH}/blob/main/docs/{base})"
-        return f"[{label}]({GH}/blob/main/docs/{base}{frag})"
+        import posixpath
+        path = posixpath.normpath("docs/" + base)
+        kind = "tree" if (base.endswith("/") or "." not in posixpath.basename(path)) else "blob"
+        return f"[{label}]({GH}/{kind}/main/{path}{frag})"
     return re.sub(r"\[([^\]]*)\]\(([^)]+)\)", rep, text)
 
 
