@@ -1,0 +1,21 @@
+---
+title: Checksum and frame decoder
+sidebar_position: 4
+description: "Decode ERDI laser rangefinder UART frames and check checksums online: the browser serial monitor and the standalone WebSerial protocol decoder."
+---
+
+Two browser tools decode frames without installing anything.
+
+## Serial monitor (this site)
+
+The [serial monitor](../tools/serial-monitor.mdx) connects to a serial port, decodes the stream for the model you pick, shows the distance and a chart, counts rejected frames (checksum failures) and exports CSV.
+
+## Paste-hex decoder
+
+The standalone [protocol decoder](https://erditech.github.io/lrf-uart-protocol-decoder/) takes pasted hex, shows the checksum result, and also has profiles for Benewake TF-style frames. Its source is in [ErdiTech/lrf-uart-protocol-decoder](https://github.com/ErdiTech/lrf-uart-protocol-decoder).
+
+## By hand
+
+Family B: the check byte is the bitwise inverse of the 8-bit sum of the bytes after the header. For `5C 02 11 EC`: 0x02 + 0x11 = 0x13, inverted gives 0xEC.
+
+Family A: the reply checksum is the lower 8 bits of the sum of all bytes before it, header included. The transmit checksum leaves the header out. Details in [Family A protocol](family-a-55aa.md).

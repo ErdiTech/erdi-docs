@@ -1,0 +1,23 @@
+[  0.9] STATUSTEXT: Barometer 1 calibration complete
+[  0.9] STATUSTEXT: Barometer 2 calibration complete
+[  1.4] STATUSTEXT: ArduPilot Ready
+[  1.7] STATUSTEXT: RC7: SaveWaypoint LOW
+[  3.4] STATUSTEXT: EKF3 IMU0 initialised
+[  3.4] STATUSTEXT: EKF3 IMU1 initialised
+[  3.4] STATUSTEXT: AHRS: EKF3 active
+[  4.8] STATUSTEXT: EKF3 IMU1 tilt alignment complete
+[  4.8] STATUSTEXT: EKF3 IMU0 tilt alignment complete
+[  4.9] STATUSTEXT: EKF3 IMU1 MAG0 initial yaw alignment complete
+[  4.9] STATUSTEXT: EKF3 IMU0 MAG0 initial yaw alignment complete
+[  8.8] STATUSTEXT: GPS 1: probing for u-blox at 230400 baud
+[  8.8] STATUSTEXT: GPS 1: detected u-blox
+[ 11.0] DISTANCE_SENSOR: 1234
+[ 19.0] STATUSTEXT: EKF3 IMU1 origin set
+[ 19.0] STATUSTEXT: Field Elevation Set: 584m
+[ 19.2] STATUSTEXT: EKF3 IMU0 origin set
+[ 23.0] DISTANCE_SENSOR: 5100
+[ 29.5] STATUSTEXT: PreArm: Rangefinder 1: No Data
+[ 34.5] STATUSTEXT: PreArm: Rangefinder 1: No Data
+[ 40.7] STATUSTEXT: EKF3 IMU0 is using GPS
+[ 40.7] STATUSTEXT: EKF3 IMU1 is using GPS
+counts {'DISTANCE_SENSOR': 184}

@@ -1,0 +1,195 @@
+---
+id: spd1200n0
+title: "SPD1200N0 UART protocol and integration"
+sidebar_label: SPD1200N0
+description: "SPD1200N0 UART protocol, wiring, specification and code examples (Python, Arduino, ESPHome, ROS 2) for the ERDI SPD1200N0 laser rangefinder module."
+keywords: [SPD1200N0, laser rangefinder module, UART protocol, A family, ERDI]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<div className="erdi-lead">SPD1200N0 905 nm Laser Ranging Module</div>
+
+Typical applications: Night vision, Thermal imaging, Civil optics.
+
+<div className="erdi-actions">
+  <a className="button button--primary" href="https://erdilrf.com/models/spd1200n0/">Price and buy on erdilrf.com</a>
+  <a className="button button--secondary" href="https://erdilrf.com/contact/?model=SPD1200N0&request_type=cad">Request STEP file</a>
+</div>
+
+## At a glance
+
+| | |
+|---|---|
+| Protocol family | Family A (55 AA, polled) |
+| Default baud | 115200 bps, 8N1 |
+| Frame | 8 bytes |
+| Distance unit on the wire | metres x 10 |
+| Measurement range (datasheet) | 0.2–1,200 m |
+
+## Specification
+
+Values come from the ERDI datasheet for this model. Where the datasheet gives a condition, it is shown.
+
+| Parameter | Value | Condition |
+|---|---|---|
+| Laser wavelength | 905 nm ± 5 nm |  |
+| Measurement range | 0.2–1,200 m | Max 1,500 m at night |
+| Ranging accuracy | ±0.3 m (≤100 m) · ±0.3 m + d·0.7‰ (100–1,200 m) |  |
+| Measurement frequency | 2–15 Hz / 4–15 Hz adaptive | Adaptive |
+| Interface | UART-TTL | Customizable |
+| Baud rate | 115200 bps (default) |  |
+| Supply voltage | 3.3–5 V |  |
+| Operating power | Average ≈ 0.45 W · max ≤ 0.75 W |  |
+| Startup time | ≤ 200 ms |  |
+| Dimensions | Ø15.7 mm × 21.3 mm (cylindrical, sealing groove) |  |
+| Weight | ≈ 5 g |  |
+| Protection rating | IP67 (inside lens cavity) |  |
+| Laser safety class | IEC Class 1 |  |
+| Operating temperature | -20 to +60 ℃ |  |
+| Storage temperature | -30 to +70 ℃ |  |
+| Laser beam divergence | &lt; 4.5 mrad |  |
+| Optical material | PMMA |  |
+| Receiving aperture | Ø 6.5 mm |  |
+| Accuracy rate | ≥ 98% |  |
+| False alarm rate | ≤ 1% |  |
+| Average laser power | On request |  |
+| Response time | On request |  |
+| Shock / vibration | 1000 g/ms (10×/s along optical axis) · 5–50–5 Hz, 2.5 g |  |
+| Reliability | MTBF ≥ 1500 h |  |
+
+## Pinout and wiring
+
+| PIN | SIGNAL | SOURCE-STATED FUNCTION |
+|---|---|---|
+| 1 | GND | Power ground |
+| 2 | VCC | Positive supply |
+| 3 | IO (reserved) | Reserved for expansion |
+| 4 | TXD | Signal output: rangefinder module to host |
+| 5 | RXD | Signal input: host to rangefinder module |
+| 6 | SW-SHOT | Function enable (active HIGH); source note: compatible with an active-LOW control requirement |
+
+Cross TX and RX (module TX to host RX), share ground, and power the module from a supply that matches the supply voltage in the specification table. See [Wiring and power](../get-started/wiring-and-power.md).
+
+## Protocol summary
+
+- Frame: 8 bytes, header `55 AA`, then function code, four data bytes, checksum.
+- Default baud: 115200 bps, 8 data bits.
+- Transmit checksum: lower 8 bits of function code + D1..D4 (the header is not included).
+- Reply checksum: lower 8 bits of header H + header L + function code + D1..D4 (the header is included). The two formulas differ on purpose.
+- Reply to a ranging command: `55 AA <fn> STA FF DIS_H DIS_L SUM`. `STA = 1` means the measurement succeeded.
+- Distance: `DIS_H:DIS_L` is the measured value in metres multiplied by 10.
+
+| Command | Request frame |
+|---|---|
+| Single-shot ranging | `55 AA 88 FF FF FF FF 84` |
+| Continuous ranging | `55 AA 89 FF FF FF FF 85` |
+| Stop ranging | `55 AA 8E FF FF FF FF 8A` |
+| Angle measurement | `55 AA 8A FF FF FF FF 86` |
+
+The full frame description is in [Family A protocol](../protocols/family-a-55aa.md). Try it without installing anything in the [browser serial monitor](../tools/serial-monitor.mdx).
+
+## Code examples
+
+<Tabs groupId="lang">
+<TabItem value="python" label="Python" default>
+
+```bash
+pip install erdi-lrf   # PyPI, MIT
+erdi-lrf --port /dev/ttyUSB0 --model SPD1200N0 measure
+```
+
+```python
+from erdi_lrf import ErdiLRF
+
+with ErdiLRF("/dev/ttyUSB0", "SPD1200N0") as lrf:   # COM3 on Windows
+    r = lrf.measure()                          # single-shot (0x88)
+    print(f"{r.metres:.3f} m", "raw", r.raw)
+```
+
+</TabItem>
+<TabItem value="arduino" label="Arduino">
+
+```cpp
+#include <ErdiLRF.h>
+
+ErdiLRF lrf(Serial1, ERDI_SPD1200N0);
+
+void setup() {
+  Serial.begin(115200);
+  Serial1.begin(erdiDefaultBaud(ERDI_SPD1200N0));   // 115200 baud; ESP32: Serial1.begin(baud, SERIAL_8N1, RX_PIN, TX_PIN)
+  lrf.setTimeout(1000);
+}
+
+void loop() {
+  ErdiMeasurement m;
+  if (lrf.measure(&m) == ERDI_OK) {
+    Serial.println(m.metres, 3);
+  }
+  delay(200);
+}
+```
+
+</TabItem>
+<TabItem value="esphome" label="ESPHome">
+
+```yaml
+external_components:
+  - source: github://ErdiTech/erdi-lrf-home-assistant
+    components: [erdi_lrf]
+
+uart:
+  id: lrf_uart
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 115200
+
+sensor:
+  - platform: erdi_lrf
+    uart_id: lrf_uart
+    model: SPD1200N0
+    name: "Laser distance"
+    update_interval: 1s
+```
+
+</TabItem>
+<TabItem value="ros2" label="ROS 2">
+
+```bash
+cd ~/ros2_ws/src && git clone https://github.com/ErdiTech/erdi_lrf_driver.git
+cd ~/ros2_ws && rosdep install --from-paths src --ignore-src -y && colcon build --packages-select erdi_lrf_driver
+source install/setup.bash
+ros2 launch erdi_lrf_driver erdi_lrf.launch.py port:=/dev/ttyUSB0 model:=SPD1200N0 rate:=10.0
+ros2 topic echo /range
+```
+
+</TabItem>
+</Tabs>
+
+## Platform status
+
+Only rows with evidence say Verified. See the [compatibility matrix](../compatibility/index.mdx) for what that means and where the evidence is.
+
+| Platform | Status | Guide |
+|---|---|---|
+| Python (erdi-lrf) | Untested | [Python / Raspberry Pi / Jetson](../platforms/raspberry-pi-jetson.md) |
+| Arduino / PlatformIO | Untested | [Arduino / PlatformIO](../platforms/arduino-platformio.md) |
+| ESPHome / Home Assistant | Untested | [ESPHome](../platforms/esphome-home-assistant.md) |
+| ROS 2 | Untested | [ROS 2](../platforms/ros2.md) |
+| ArduPilot (Lua script) | Untested | [ArduPilot](../platforms/ardupilot.mdx) |
+| ArduPilot native driver | No driver yet | [ArduPilot](../platforms/ardupilot.mdx) |
+
+## Known issues
+
+- The datasheet states that request and reply checksum scopes differ but does not print the transmit formula. The erdi-lrf driver uses the family A transmit formula, which reproduces every example frame the datasheet does print.
+- UART logic level is not stated as a separate field for most models. Supply voltage is not the UART voltage: check the module's TX level against your host before wiring, or ask us.
+
+## Resources
+
+- Model page with datasheet download: [https://erdilrf.com/models/spd1200n0/](https://erdilrf.com/models/spd1200n0/)
+- Datasheet and specification page: [SPD1200N0 datasheet and specs](https://erdilrf.com/lrf/spd1200n0-datasheet-specs/)
+- Interactive 3D view: [SPD1200N0 3D viewer](https://erdilrf.com/3d-viewer/spd1200n0/)
+- STEP model: available on request, [Request STEP](https://erdilrf.com/contact/?model=SPD1200N0&request_type=cad)
+- Drivers and protocol notes: [ErdiTech/erdi-lrf-drivers](https://github.com/ErdiTech/erdi-lrf-drivers)
+- Questions: tommy@erdimail.com, +86 133 0819 5790

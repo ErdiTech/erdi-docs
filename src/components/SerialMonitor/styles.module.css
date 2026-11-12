@@ -1,0 +1,12 @@
+.wrap { margin: 1rem 0 2rem; }
+.controls { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end; margin-bottom: 1rem; }
+.controls label { display: flex; flex-direction: column; font-size: 0.85rem; gap: 0.25rem; }
+.controls select, .controls input { padding: 0.4rem 0.5rem; border-radius: 6px; border: 1px solid var(--ifm-color-emphasis-400); background: var(--ifm-background-color); color: var(--ifm-font-color-base); min-width: 11rem; }
+.buttons { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.readout { display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; margin-bottom: 1rem; }
+.big { font-size: 2.4rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.sub { color: var(--ifm-color-emphasis-700); font-size: 0.9rem; }
+.stats th { text-align: left; font-weight: 600; padding-right: 0.5rem; }
+.stats td { padding-right: 1.5rem; font-variant-numeric: tabular-nums; }
+.chart { width: 100%; min-height: 250px; margin-bottom: 1rem; }
+.hex { font-size: 0.8rem; max-height: 14rem; overflow: auto; }

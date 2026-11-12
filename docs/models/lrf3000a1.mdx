@@ -1,0 +1,198 @@
+---
+id: lrf3000a1
+title: "LRF3000A1 UART protocol and integration"
+sidebar_label: LRF3000A1
+description: "LRF3000A1 UART protocol, wiring, specification and code examples (Python, Arduino, ESPHome, ROS 2) for the ERDI LRF3000A1 laser rangefinder module."
+keywords: [LRF3000A1, laser rangefinder module, UART protocol, A family, ERDI]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<div className="erdi-lead">LRF3000A1 905 nm Laser Rangefinder Module</div>
+
+Typical applications: Handheld optics, Survey instruments, UAV payloads, Embedded EO systems.
+
+<div className="erdi-actions">
+  <a className="button button--primary" href="https://erdilrf.com/models/lrf3000a1/">Price and buy on erdilrf.com</a>
+  <a className="button button--secondary" href="https://erdilrf.com/contact/?model=LRF3000A1&request_type=cad">Request STEP file</a>
+</div>
+
+## At a glance
+
+| | |
+|---|---|
+| Protocol family | Family A (55 AA, polled) |
+| Default baud | 115200 bps, 8N1 |
+| Frame | 8 bytes |
+| Distance unit on the wire | metres x 10 |
+| Measurement range (datasheet) | see specification |
+
+## Specification
+
+Values come from the ERDI datasheet for this model. Where the datasheet gives a condition, it is shown.
+
+| Parameter | Value | Condition |
+|---|---|---|
+| Laser wavelength | 905 ± 10 nm, Class 1 (IEC 60825-1) |  |
+| Ranging accuracy | d ≤ 100 m: ±0.7 m · d > 100 m: ±(0.7 + 0.003·d) m |  |
+| Measurement frequency | Normal 3–10 Hz adaptive · Long-range 1–10 Hz adaptive | Adaptive |
+| Interface | UART (TTL 3.3 V) |  |
+| Baud rate | 115200 bps default / 9600 bps |  |
+| Supply voltage | DC 3.3–5 V | Ripple &lt; 0.1 V |
+| Operating power | ≤ 1.8 W @25℃ · ≤ 2.1 W @70℃ · ≤ 1.6 W @-20℃ |  |
+| Dimensions | 13.5 × 25.1 × 27.8 mm |  |
+| Weight | 12 ± 0.5 g |  |
+| Protection rating | IP67 |  |
+| Operating temperature | -20 to +60 ℃ |  |
+| Storage temperature | -25 to +75 ℃ |  |
+| Maximum ranging distance | ≥ 3,000 m @ 70% reflectivity, building target (clear weather, visibility ≥ 4 km) | 70% refl. building target (clear, visibility ≥ 4 km) |
+| Minimum ranging distance | 1 m | 90% refl. white board |
+| Valid measurement rate | ≥ 98% |  |
+| False alarm rate | ≤ 1% |  |
+| Typical beam divergence | ≤ 10 mrad |  |
+| Average laser power | 7.63 mW |  |
+| Receiver field of view | ≈ 8 mrad |  |
+| Standby power | ≤ 1 mW (enable high) / ≤ 350 mW (enable low) |  |
+| Response time | ≤ 160 ms + 100–517 ms (start-up + first ranging) |  |
+| Shock / vibration | 1000 g/ms · 5–50–5 Hz, 2.5 g |  |
+| Reliability | MTBF ≥ 1500 h |  |
+
+## Pinout and wiring
+
+| PIN | SOURCE DEFINITION | SOURCE DESCRIPTION |
+|---|---|---|
+| 1 | GND | Ground |
+| 2 | Power Supply | 3.3 V–5 V DC Power Supply |
+| 3 | NC | Reserved Pin |
+| 4 | TTL_TXD | Serial TX, **TTL_3.3 V level** |
+| 5 | TTL_RXD | Serial RX, **TTL_3.3 V level** |
+| 6 | Enable Pin | Power ON at low level |
+
+Cross TX and RX (module TX to host RX), share ground, and power the module from a supply that matches the supply voltage in the specification table. See [Wiring and power](../get-started/wiring-and-power.md).
+
+## Protocol summary
+
+- Frame: 8 bytes, header `55 AA`, then function code, four data bytes, checksum.
+- Default baud: 115200 bps, 8 data bits.
+- Transmit checksum: lower 8 bits of function code + D1..D4 (the header is not included).
+- Reply checksum: lower 8 bits of header H + header L + function code + D1..D4 (the header is included). The two formulas differ on purpose.
+- Reply to a ranging command: `55 AA <fn> STA FF DIS_H DIS_L SUM`. `STA = 1` means the measurement succeeded.
+- Distance: `DIS_H:DIS_L` is the measured value in metres multiplied by 10.
+
+| Command | Request frame |
+|---|---|
+| Single-shot ranging | `55 AA 88 FF FF FF FF 84` |
+| Continuous ranging | `55 AA 89 FF FF FF FF 85` |
+| Stop ranging | `55 AA 8E FF FF FF FF 8A` |
+| Angle measurement | `55 AA 8A FF FF FF FF 86` |
+
+:::caution Continuous ranging
+For this model the manual's continuous-ranging request uses function byte `0x89` while the recorded reply uses `0x88`. Poll with single-shot (`0x88`) until ERDI confirms the behaviour for your batch.
+:::
+
+The full frame description is in [Family A protocol](../protocols/family-a-55aa.md). Try it without installing anything in the [browser serial monitor](../tools/serial-monitor.mdx).
+
+## Code examples
+
+<Tabs groupId="lang">
+<TabItem value="python" label="Python" default>
+
+```bash
+pip install erdi-lrf   # PyPI, MIT
+erdi-lrf --port /dev/ttyUSB0 --model LRF3000A1 measure
+```
+
+```python
+from erdi_lrf import ErdiLRF
+
+with ErdiLRF("/dev/ttyUSB0", "LRF3000A1") as lrf:   # COM3 on Windows
+    r = lrf.measure()                          # single-shot (0x88)
+    print(f"{r.metres:.3f} m", "raw", r.raw)
+```
+
+</TabItem>
+<TabItem value="arduino" label="Arduino">
+
+```cpp
+#include <ErdiLRF.h>
+
+ErdiLRF lrf(Serial1, ERDI_LRF3000A1);
+
+void setup() {
+  Serial.begin(115200);
+  Serial1.begin(erdiDefaultBaud(ERDI_LRF3000A1));   // 115200 baud; ESP32: Serial1.begin(baud, SERIAL_8N1, RX_PIN, TX_PIN)
+  lrf.setTimeout(1000);
+}
+
+void loop() {
+  ErdiMeasurement m;
+  if (lrf.measure(&m) == ERDI_OK) {
+    Serial.println(m.metres, 3);
+  }
+  delay(200);
+}
+```
+
+</TabItem>
+<TabItem value="esphome" label="ESPHome">
+
+```yaml
+external_components:
+  - source: github://ErdiTech/erdi-lrf-home-assistant
+    components: [erdi_lrf]
+
+uart:
+  id: lrf_uart
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 115200
+
+sensor:
+  - platform: erdi_lrf
+    uart_id: lrf_uart
+    model: LRF3000A1
+    name: "Laser distance"
+    update_interval: 1s
+```
+
+</TabItem>
+<TabItem value="ros2" label="ROS 2">
+
+```bash
+cd ~/ros2_ws/src && git clone https://github.com/ErdiTech/erdi_lrf_driver.git
+cd ~/ros2_ws && rosdep install --from-paths src --ignore-src -y && colcon build --packages-select erdi_lrf_driver
+source install/setup.bash
+ros2 launch erdi_lrf_driver erdi_lrf.launch.py port:=/dev/ttyUSB0 model:=LRF3000A1 rate:=10.0
+ros2 topic echo /range
+```
+
+</TabItem>
+</Tabs>
+
+## Platform status
+
+Only rows with evidence say Verified. See the [compatibility matrix](../compatibility/index.mdx) for what that means and where the evidence is.
+
+| Platform | Status | Guide |
+|---|---|---|
+| Python (erdi-lrf) | Untested | [Python / Raspberry Pi / Jetson](../platforms/raspberry-pi-jetson.md) |
+| Arduino / PlatformIO | Untested | [Arduino / PlatformIO](../platforms/arduino-platformio.md) |
+| ESPHome / Home Assistant | Untested | [ESPHome](../platforms/esphome-home-assistant.md) |
+| ROS 2 | Untested | [ROS 2](../platforms/ros2.md) |
+| ArduPilot (Lua script) | Untested | [ArduPilot](../platforms/ardupilot.mdx) |
+| ArduPilot native driver | No driver yet | [ArduPilot](../platforms/ardupilot.mdx) |
+
+## Known issues
+
+- The datasheet notes that the send and receive checksums are computed over different bytes (see Protocol). Use separate functions for the two directions.
+- UART logic level is not stated as a separate field for most models. Supply voltage is not the UART voltage: check the module's TX level against your host before wiring, or ask us.
+
+## Resources
+
+- Model page with datasheet download: [https://erdilrf.com/models/lrf3000a1/](https://erdilrf.com/models/lrf3000a1/)
+- Datasheet and specification page: [LRF3000A1 datasheet and specs](https://erdilrf.com/lrf/lrf3000a1-datasheet-specs/)
+- Interactive 3D view: [LRF3000A1 3D viewer](https://erdilrf.com/3d-viewer/lrf3000a1/)
+- STEP model: available on request, [Request STEP](https://erdilrf.com/contact/?model=LRF3000A1&request_type=cad)
+- Drivers and protocol notes: [ErdiTech/erdi-lrf-drivers](https://github.com/ErdiTech/erdi-lrf-drivers)
+- Questions: tommy@erdimail.com, +86 133 0819 5790

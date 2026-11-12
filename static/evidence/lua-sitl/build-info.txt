@@ -1,0 +1,2 @@
+branch=pr-rangefinder-erdi head=8ce00e7 merge-base-master=802db19de
+-rwxr-xr-x 1 tommy tommy 60678584 Nov  6 13:14 /home/tommy/ap/ardupilot/build/sitl/bin/arducopter

@@ -1,0 +1,53 @@
+---
+id: index
+slug: /
+title: ERDI developer documentation
+sidebar_label: Overview
+description: "Developer documentation for ERDI laser rangefinder modules: UART protocols, wiring, code examples for Python, Arduino, ESPHome, ROS 2 and ArduPilot, a compatibility matrix and a browser serial monitor."
+---
+
+import Link from '@docusaurus/Link';
+import Matrix from '@site/docs/compatibility/_matrix.md';
+
+This is the integration guide for ERDI laser rangefinder modules. It covers what you need to read a distance from a module over UART: frame formats, wiring, working code, and which platforms have been tested.
+
+<div className="erdi-cards">
+  <Link className="erdi-card" to="/models/">
+    <strong>By model</strong>
+    <span>22 models with a published protocol: specification, pinout, protocol summary, code.</span>
+  </Link>
+  <Link className="erdi-card" to="/platforms/ardupilot/">
+    <strong>By platform</strong>
+    <span>ArduPilot, PX4, ROS 2, ESPHome, Arduino, Raspberry Pi, STM32, MicroPython.</span>
+  </Link>
+  <Link className="erdi-card" to="/protocols/family-b-5c/">
+    <strong>By protocol</strong>
+    <span>Family A (55 AA, polled) and family B (5C, streaming) frames, units, checksums.</span>
+  </Link>
+  <Link className="erdi-card" to="/tools/serial-monitor/">
+    <strong>Test in the browser</strong>
+    <span>Plug in a module, pick the model, see distance and a live chart. No install.</span>
+  </Link>
+</div>
+
+## First reading in five minutes
+
+1. Pick a model: [choose a module](get-started/choose-a-module.mdx). Check supply voltage first, it differs a lot between models.
+2. Wire it: [wiring and power](get-started/wiring-and-power.md). Cross TX and RX, share ground.
+3. Read a distance: [first reading with a USB-TTL adapter](get-started/first-reading-usb-ttl.md), or open the [serial monitor](tools/serial-monitor.mdx) in Chrome or Edge.
+
+## Compatibility at a glance
+
+We only write Verified where there is evidence you can open. Everything else says Untested or No driver yet. Details and the meaning of each status are on the [compatibility page](compatibility/index.mdx).
+
+<Matrix />
+
+## Models without a public protocol
+
+Some models are not documented here yet. Their protocol is provided on request: see [other models](models/more-models.md).
+
+## Where the content comes from
+
+Specifications and protocol fields are generated from ERDI's verified product database, and the protocol and guide pages are the documents in the open-source [erdi-lrf-drivers](https://github.com/ErdiTech/erdi-lrf-drivers) repository. Prices are not shown here, the buy button on each model page goes to the shop.
+
+Questions: tommy@erdimail.com, +86 133 0819 5790, or [GitHub issues](https://github.com/ErdiTech/erdi-docs/issues).

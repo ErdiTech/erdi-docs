@@ -1,0 +1,186 @@
+---
+id: lrf22vb
+title: "LRF22VB UART protocol and integration"
+sidebar_label: LRF22VB
+description: "LRF22VB UART protocol, wiring, specification and code examples (Python, Arduino, ESPHome, ROS 2) for the ERDI LRF22VB laser rangefinder module."
+keywords: [LRF22VB, laser rangefinder module, UART protocol, B family, ERDI]
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<div className="erdi-lead">LRF22VB 20m Single-Point DToF LiDAR Sensor for Drone Altitude Hold, Robot and AGV Obstacle Avoidance</div>
+
+Typical applications: Drone altitude hold, Robot & AGV obstacle avoidance, Camera focusing.
+
+<div className="erdi-actions">
+  <a className="button button--primary" href="https://erdilrf.com/models/lrf22vb/">Price and buy on erdilrf.com</a>
+  <a className="button button--secondary" href="https://erdilrf.com/contact/?model=LRF22VB&request_type=cad">Request STEP file</a>
+</div>
+
+## At a glance
+
+| | |
+|---|---|
+| Protocol family | Family B (5C, streaming) |
+| Default baud | 460800 bps, 8N1 |
+| Frame | 4 bytes |
+| Distance unit on the wire | millimetres |
+| Measurement range (datasheet) | 0.05–20 m (90% refl.) · 0.05–10 m |
+
+## Specification
+
+Values come from the ERDI datasheet for this model. Where the datasheet gives a condition, it is shown.
+
+| Parameter | Value | Condition |
+|---|---|---|
+| Laser wavelength | 905 nm |  |
+| Ranging range | 0.05–20 m (90% refl.) · 0.05–10 m | 10% refl. |
+| Ranging accuracy | ±5 cm (&lt;5 m) · 1% (≥5 m) |  |
+| Measurement frequency | 200 Hz, selectable 200/100/50/20/10/1 Hz |  |
+| Interface | UART / I²C |  |
+| Supply voltage | 3.0–3.6 V DC |  |
+| Dimensions | 21 × 15 × 7.43 mm |  |
+| Weight | 1.5 g |  |
+| Laser safety class | Class 1 |  |
+| Operating temperature | -20 to +60 ℃ |  |
+| Field of view | 3° |  |
+| Repeatability | ±30 mm |  |
+| Ambient light immunity | 8 m | 60 kLux |
+| Peak current | 70 mA | 3.3 V |
+| Average current | 40 mA | 3.3 V |
+| Average power consumption | &lt; 0.2 W |  |
+| Wire specification | 6-pin 0.8 mm terminal (HC-0.8-6PWT), 20 cm tinned stranded wires |  |
+| Customization | Available in appearance / structure / output protocol |  |
+
+## Pinout and wiring
+
+| No. | Definition / Wire Color | User Interface |
+|---|---|---|
+| 1 | NC (White) | / |
+| 2 | 3.3V (Red) | External Power + |
+| 3 | TX SCL (Yellow) | RXSCL |
+| 4 | RXSDA (Green) | TXSDA |
+| 5 | NC (Blue) | / |
+| 6 | GND (Black) | External Power - |
+
+Cross TX and RX (module TX to host RX), share ground, and power the module from a supply that matches the supply voltage in the specification table. See [Wiring and power](../get-started/wiring-and-power.md).
+
+## Protocol summary
+
+- Data frame: 4 bytes, `5C <dist_lo> <dist_hi> <check>`, free-running.
+- Default baud: 460800 bps, 8 data bits, 1 stop bit, no parity.
+- Distance: 2 bytes, little-endian, unit **millimetres**. The VB series reports millimetres and the H series centimetres, so `5C 02 11 EC` is 4.354 m on a VB module and 43.54 m on an H module.
+- Out-of-range marker: the module outputs 20000 when there is no valid target. Treat it as no target, not as a distance.
+- Checksum: bitwise inverse of the 8-bit sum of all bytes between the header and the check byte.
+
+| Command | Request frame |
+|---|---|
+| Start ranging | `5A 0A 02 02 00 F1` |
+| Stop ranging | `5A 0A 02 00 00 F3` |
+
+The full frame description is in [Family B protocol](../protocols/family-b-5c.md). Try it without installing anything in the [browser serial monitor](../tools/serial-monitor.mdx).
+
+## Code examples
+
+<Tabs groupId="lang">
+<TabItem value="python" label="Python" default>
+
+```bash
+pip install erdi-lrf   # PyPI, MIT
+erdi-lrf --port /dev/ttyUSB0 --model LRF22VB stream --count 20
+```
+
+```python
+from erdi_lrf import ErdiLRF
+
+# COM3 on Windows, /dev/ttyUSB0 or /dev/serial0 on Linux
+with ErdiLRF("/dev/ttyUSB0", "LRF22VB") as lrf:
+    for r in lrf.stream():
+        print("out of range" if r.out_of_range else f"{r.metres:.3f} m", "raw", r.raw)
+```
+
+</TabItem>
+<TabItem value="arduino" label="Arduino">
+
+```cpp
+#include <ErdiLRF.h>
+
+ErdiLRF lrf(Serial1, ERDI_LRF22VB);
+
+void setup() {
+  Serial.begin(115200);
+  Serial1.begin(erdiDefaultBaud(ERDI_LRF22VB));   // 460800 baud; ESP32: Serial1.begin(baud, SERIAL_8N1, RX_PIN, TX_PIN)
+  lrf.setTimeout(1000);
+}
+
+void loop() {
+  ErdiMeasurement m;
+  if (lrf.measure(&m) == ERDI_OK) {
+    Serial.println(m.metres, 3);
+  }
+  delay(200);
+}
+```
+
+</TabItem>
+<TabItem value="esphome" label="ESPHome">
+
+```yaml
+external_components:
+  - source: github://ErdiTech/erdi-lrf-home-assistant
+    components: [erdi_lrf]
+
+uart:
+  id: lrf_uart
+  tx_pin: GPIO17
+  rx_pin: GPIO16
+  baud_rate: 460800
+
+sensor:
+  - platform: erdi_lrf
+    uart_id: lrf_uart
+    model: LRF22VB
+    name: "Laser distance"
+    update_interval: 1s
+```
+
+</TabItem>
+<TabItem value="ros2" label="ROS 2">
+
+```bash
+cd ~/ros2_ws/src && git clone https://github.com/ErdiTech/erdi_lrf_driver.git
+cd ~/ros2_ws && rosdep install --from-paths src --ignore-src -y && colcon build --packages-select erdi_lrf_driver
+source install/setup.bash
+ros2 launch erdi_lrf_driver erdi_lrf.launch.py port:=/dev/ttyUSB0 model:=LRF22VB rate:=10.0
+ros2 topic echo /range
+```
+
+</TabItem>
+</Tabs>
+
+## Platform status
+
+Only rows with evidence say Verified. See the [compatibility matrix](../compatibility/index.mdx) for what that means and where the evidence is.
+
+| Platform | Status | Guide |
+|---|---|---|
+| Python (erdi-lrf) | Untested | [Python / Raspberry Pi / Jetson](../platforms/raspberry-pi-jetson.md) |
+| Arduino / PlatformIO | Untested | [Arduino / PlatformIO](../platforms/arduino-platformio.md) |
+| ESPHome / Home Assistant | Untested | [ESPHome](../platforms/esphome-home-assistant.md) |
+| ROS 2 | Untested | [ROS 2](../platforms/ros2.md) |
+| ArduPilot (Lua script) | Untested | [ArduPilot](../platforms/ardupilot.mdx) |
+| ArduPilot native driver | In review (PR #34983, not merged) | [ArduPilot](../platforms/ardupilot.mdx) |
+
+## Known issues
+
+- UART logic level is not stated as a separate field for most models. Supply voltage is not the UART voltage: check the module's TX level against your host before wiring, or ask us.
+
+## Resources
+
+- Model page with datasheet download: [https://erdilrf.com/models/lrf22vb/](https://erdilrf.com/models/lrf22vb/)
+- Datasheet and specification page: [LRF22VB datasheet and specs](https://erdilrf.com/lrf/lrf22vb-datasheet-specs/)
+- Interactive 3D view: [LRF22VB 3D viewer](https://erdilrf.com/3d-viewer/lrf22vb/)
+- STEP model: available on request, [Request STEP](https://erdilrf.com/contact/?model=LRF22VB&request_type=cad)
+- Drivers and protocol notes: [ErdiTech/erdi-lrf-drivers](https://github.com/ErdiTech/erdi-lrf-drivers)
+- Questions: tommy@erdimail.com, +86 133 0819 5790

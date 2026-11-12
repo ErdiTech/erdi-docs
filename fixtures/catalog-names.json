@@ -1,0 +1,238 @@
+[
+ {
+  "model": "LRF0815C",
+  "title": "LRF0815C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF0405C",
+  "title": "LRF0405C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "MINI-100",
+  "title": "MINI-100 1535 nm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "ER100",
+  "title": "ER100 1.54 µm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "ER10000",
+  "title": "ER10000 1535 nm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "ER200",
+  "title": "ER200 1535 nm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "ER2000",
+  "title": "ER2000 1535 nm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "ER300",
+  "title": "ER300 1535 nm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "ER400",
+  "title": "ER400 1535 nm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "ER4000",
+  "title": "ER4000 1535 nm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "ER500",
+  "title": "ER500 1535 nm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "ER800",
+  "title": "ER800 1535 nm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "ER8000",
+  "title": "ER8000 1535 nm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "ER900",
+  "title": "ER900 1535 nm Erbium-Glass Laser Source"
+ },
+ {
+  "model": "LR1000D23",
+  "title": "LR1000D23 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LR1000E2",
+  "title": "LR1000E2 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LR1000E4",
+  "title": "LR1000E4 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LR1200D23",
+  "title": "LR1200D23 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LR1200E2",
+  "title": "LR1200E2 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LR1200E4",
+  "title": "LR1200E4 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LR1500D23",
+  "title": "LR1500D23 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LR1500E2",
+  "title": "LR1500E2 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LR1500E4",
+  "title": "LR1500E4 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LR2000E2",
+  "title": "LR2000E2 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LR2000E4",
+  "title": "LR2000E4 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF0105C",
+  "title": "LRF0105C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF0305C",
+  "title": "LRF0305C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF0306C",
+  "title": "LRF0306C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF0310C",
+  "title": "LRF0310C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF0609C",
+  "title": "LRF0609C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF0610C",
+  "title": "LRF0610C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF0612C",
+  "title": "LRF0612C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF0816C",
+  "title": "LRF0816C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF0818C",
+  "title": "LRF0818C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF100H",
+  "title": "LRF100H 905 nm LiDAR Distance Sensor"
+ },
+ {
+  "model": "LRF1017C",
+  "title": "LRF1017C 1.54 µm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF10VB",
+  "title": "LRF10VB 940 nm Single-Point LiDAR Sensor"
+ },
+ {
+  "model": "LRF1200A1",
+  "title": "LRF1200A1 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF1221C",
+  "title": "LRF1221C 1.54 µm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF1222C",
+  "title": "LRF1222C 1.54 µm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF1500H",
+  "title": "LRF1500H 905 nm LiDAR Distance Sensor"
+ },
+ {
+  "model": "LRF1525C",
+  "title": "LRF1525C 1.54 µm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF1829C",
+  "title": "LRF1829C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF1830C",
+  "title": "LRF1830C 1.54 µm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF1831C",
+  "title": "LRF1831C 1535 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF200H",
+  "title": "LRF200H 905 nm LiDAR Distance Sensor"
+ },
+ {
+  "model": "LRF22VB",
+  "title": "LRF22VB 905 nm Single-Point LiDAR Sensor"
+ },
+ {
+  "model": "LRF3000A1",
+  "title": "LRF3000A1 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "LRF300H",
+  "title": "LRF300H 905 nm LiDAR Distance Sensor"
+ },
+ {
+  "model": "LRF50H",
+  "title": "LRF50H 905 nm LiDAR Distance Sensor"
+ },
+ {
+  "model": "LRF50VB",
+  "title": "LRF50VB 905 nm Single-Point LiDAR Sensor"
+ },
+ {
+  "model": "LRF600H",
+  "title": "LRF600H 905 nm LiDAR Distance Sensor"
+ },
+ {
+  "model": "SPD1200N0",
+  "title": "SPD1200N0 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "SPD1200N2",
+  "title": "SPD1200N2 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "SPD1200N3",
+  "title": "SPD1200N3 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "SPD1200N4",
+  "title": "SPD1200N4 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "SPD1200S2",
+  "title": "SPD1200S2 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "SPD1200Z2",
+  "title": "SPD1200Z2 905 nm Laser Rangefinder Module"
+ },
+ {
+  "model": "SPD1200ZG",
+  "title": "SPD1200ZG 905 nm Laser Rangefinder Module"
+ }
+]

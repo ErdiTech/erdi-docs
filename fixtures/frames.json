@@ -1,0 +1,1258 @@
+{
+ "frames": [
+  {
+   "model": "LR1000E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1000E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1000E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1000E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1000E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1000E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1000E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1000E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1200E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1200E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1200E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1200E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1200E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1200E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1200E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1200E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LRF1200A1",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LRF1200A1",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "LRF1200A1",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "LRF1200A1",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N0",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N0",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N0",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N0",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "SPD1200N4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1500E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1500E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1500E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1500E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1500E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1500E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1500E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR1500E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR2000E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR2000E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR2000E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR2000E2",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR2000E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR2000E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR2000E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "LR2000E4",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LRF3000A1",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 00 87",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LRF3000A1",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 00 7b 02",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 123,
+    "metres": 12.3,
+    "status": 1
+   }
+  },
+  {
+   "model": "LRF3000A1",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 04 d2 5d",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 1234,
+    "metres": 123.4,
+    "status": 1
+   }
+  },
+  {
+   "model": "LRF3000A1",
+   "family": "A",
+   "hex": "55 aa 88 01 ff 75 30 2c",
+   "note": "single-shot reply",
+   "expect": {
+    "raw": 30000,
+    "metres": 3000.0,
+    "status": 1
+   }
+  },
+  {
+   "model": "LRF10VB",
+   "family": "B",
+   "hex": "5c 00 00 ff",
+   "note": "round-trip",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF10VB",
+   "family": "B",
+   "hex": "5c 01 00 fe",
+   "note": "round-trip",
+   "expect": {
+    "raw": 1,
+    "metres": 0.001,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF10VB",
+   "family": "B",
+   "hex": "5c 02 11 ec",
+   "note": "round-trip",
+   "expect": {
+    "raw": 4354,
+    "metres": 4.354,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF10VB",
+   "family": "B",
+   "hex": "5c 39 30 96",
+   "note": "round-trip",
+   "expect": {
+    "raw": 12345,
+    "metres": 12.345,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF10VB",
+   "family": "B",
+   "hex": "5c ff ff 01",
+   "note": "out-of-range marker",
+   "expect": {
+    "raw": 65535,
+    "metres": 65.535,
+    "oor": true
+   }
+  },
+  {
+   "model": "LRF22VB",
+   "family": "B",
+   "hex": "5c 00 00 ff",
+   "note": "round-trip",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF22VB",
+   "family": "B",
+   "hex": "5c 01 00 fe",
+   "note": "round-trip",
+   "expect": {
+    "raw": 1,
+    "metres": 0.001,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF22VB",
+   "family": "B",
+   "hex": "5c 02 11 ec",
+   "note": "round-trip",
+   "expect": {
+    "raw": 4354,
+    "metres": 4.354,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF22VB",
+   "family": "B",
+   "hex": "5c 39 30 96",
+   "note": "round-trip",
+   "expect": {
+    "raw": 12345,
+    "metres": 12.345,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF22VB",
+   "family": "B",
+   "hex": "5c 20 4e 91",
+   "note": "out-of-range marker",
+   "expect": {
+    "raw": 20000,
+    "metres": 20.0,
+    "oor": true
+   }
+  },
+  {
+   "model": "LRF50VB",
+   "family": "B",
+   "hex": "5c 00 00 ff",
+   "note": "round-trip",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50VB",
+   "family": "B",
+   "hex": "5c 01 00 fe",
+   "note": "round-trip",
+   "expect": {
+    "raw": 1,
+    "metres": 0.001,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50VB",
+   "family": "B",
+   "hex": "5c 02 11 ec",
+   "note": "round-trip",
+   "expect": {
+    "raw": 4354,
+    "metres": 4.354,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50VB",
+   "family": "B",
+   "hex": "5c 39 30 96",
+   "note": "round-trip",
+   "expect": {
+    "raw": 12345,
+    "metres": 12.345,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50VB",
+   "family": "B",
+   "hex": "5c 50 c3 ec",
+   "note": "out-of-range marker",
+   "expect": {
+    "raw": 50000,
+    "metres": 50.0,
+    "oor": true
+   }
+  },
+  {
+   "model": "LRF50H",
+   "family": "B",
+   "hex": "5c 00 00 ff",
+   "note": "round-trip",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50H",
+   "family": "B",
+   "hex": "5c 01 00 fe",
+   "note": "round-trip",
+   "expect": {
+    "raw": 1,
+    "metres": 0.01,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50H",
+   "family": "B",
+   "hex": "5c 02 11 ec",
+   "note": "round-trip",
+   "expect": {
+    "raw": 4354,
+    "metres": 43.54,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50H",
+   "family": "B",
+   "hex": "5c 39 30 96",
+   "note": "round-trip",
+   "expect": {
+    "raw": 12345,
+    "metres": 123.45,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50H",
+   "family": "B",
+   "hex": "5c ff ff 01",
+   "note": "out-of-range marker",
+   "expect": {
+    "raw": 65535,
+    "metres": 655.35,
+    "oor": true
+   }
+  },
+  {
+   "model": "LRF100H",
+   "family": "B",
+   "hex": "5c 00 00 ff",
+   "note": "round-trip",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF100H",
+   "family": "B",
+   "hex": "5c 01 00 fe",
+   "note": "round-trip",
+   "expect": {
+    "raw": 1,
+    "metres": 0.01,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF100H",
+   "family": "B",
+   "hex": "5c 02 11 ec",
+   "note": "round-trip",
+   "expect": {
+    "raw": 4354,
+    "metres": 43.54,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF100H",
+   "family": "B",
+   "hex": "5c 39 30 96",
+   "note": "round-trip",
+   "expect": {
+    "raw": 12345,
+    "metres": 123.45,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF100H",
+   "family": "B",
+   "hex": "5c ff ff 01",
+   "note": "out-of-range marker",
+   "expect": {
+    "raw": 65535,
+    "metres": 655.35,
+    "oor": true
+   }
+  },
+  {
+   "model": "LRF200H",
+   "family": "B",
+   "hex": "5c 00 00 ff",
+   "note": "round-trip",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF200H",
+   "family": "B",
+   "hex": "5c 01 00 fe",
+   "note": "round-trip",
+   "expect": {
+    "raw": 1,
+    "metres": 0.01,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF200H",
+   "family": "B",
+   "hex": "5c 02 11 ec",
+   "note": "round-trip",
+   "expect": {
+    "raw": 4354,
+    "metres": 43.54,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF200H",
+   "family": "B",
+   "hex": "5c 39 30 96",
+   "note": "round-trip",
+   "expect": {
+    "raw": 12345,
+    "metres": 123.45,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF200H",
+   "family": "B",
+   "hex": "5c ff ff 01",
+   "note": "out-of-range marker",
+   "expect": {
+    "raw": 65535,
+    "metres": 655.35,
+    "oor": true
+   }
+  },
+  {
+   "model": "LRF300H",
+   "family": "B",
+   "hex": "5c 00 00 ff",
+   "note": "round-trip",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF300H",
+   "family": "B",
+   "hex": "5c 01 00 fe",
+   "note": "round-trip",
+   "expect": {
+    "raw": 1,
+    "metres": 0.01,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF300H",
+   "family": "B",
+   "hex": "5c 02 11 ec",
+   "note": "round-trip",
+   "expect": {
+    "raw": 4354,
+    "metres": 43.54,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF300H",
+   "family": "B",
+   "hex": "5c 39 30 96",
+   "note": "round-trip",
+   "expect": {
+    "raw": 12345,
+    "metres": 123.45,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF300H",
+   "family": "B",
+   "hex": "5c ff ff 01",
+   "note": "out-of-range marker",
+   "expect": {
+    "raw": 65535,
+    "metres": 655.35,
+    "oor": true
+   }
+  },
+  {
+   "model": "LRF600H",
+   "family": "B",
+   "hex": "5c 00 00 ff",
+   "note": "round-trip",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF600H",
+   "family": "B",
+   "hex": "5c 01 00 fe",
+   "note": "round-trip",
+   "expect": {
+    "raw": 1,
+    "metres": 0.01,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF600H",
+   "family": "B",
+   "hex": "5c 02 11 ec",
+   "note": "round-trip",
+   "expect": {
+    "raw": 4354,
+    "metres": 43.54,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF600H",
+   "family": "B",
+   "hex": "5c 39 30 96",
+   "note": "round-trip",
+   "expect": {
+    "raw": 12345,
+    "metres": 123.45,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF600H",
+   "family": "B",
+   "hex": "5c ff ff 01",
+   "note": "out-of-range marker",
+   "expect": {
+    "raw": 65535,
+    "metres": 655.35,
+    "oor": true
+   }
+  },
+  {
+   "model": "LRF1500H",
+   "family": "B",
+   "hex": "5c 00 00 00 ff",
+   "note": "round-trip",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF1500H",
+   "family": "B",
+   "hex": "5c 01 00 00 fe",
+   "note": "round-trip",
+   "expect": {
+    "raw": 1,
+    "metres": 0.01,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF1500H",
+   "family": "B",
+   "hex": "5c 02 11 03 e9",
+   "note": "round-trip",
+   "expect": {
+    "raw": 200962,
+    "metres": 2009.6200000000001,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF1500H",
+   "family": "B",
+   "hex": "5c 39 30 00 96",
+   "note": "round-trip",
+   "expect": {
+    "raw": 12345,
+    "metres": 123.45,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF1500H",
+   "family": "B",
+   "hex": "5c ff ff ff 02",
+   "note": "out-of-range marker",
+   "expect": {
+    "raw": 16777215,
+    "metres": 167772.15,
+    "oor": true
+   }
+  },
+  {
+   "model": "LRF3000A1",
+   "family": "A",
+   "hex": "55 aa 88 00 ff 00 00 86",
+   "note": "STA=0 failure",
+   "expect": {
+    "raw": 0,
+    "metres": 0.0,
+    "status": 0
+   }
+  },
+  {
+   "model": "LRF22VB",
+   "family": "B",
+   "hex": "5c ad 06 4c",
+   "note": "capture lrf22vb-tool-capture-mm.txt value 1709",
+   "expect": {
+    "raw": 1709,
+    "metres": 1.709,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF22VB",
+   "family": "B",
+   "hex": "5c ac 06 4d",
+   "note": "capture lrf22vb-tool-capture-mm.txt value 1708",
+   "expect": {
+    "raw": 1708,
+    "metres": 1.708,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF22VB",
+   "family": "B",
+   "hex": "5c ad 06 4c",
+   "note": "capture lrf22vb-tool-capture-mm.txt value 1709",
+   "expect": {
+    "raw": 1709,
+    "metres": 1.709,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF22VB",
+   "family": "B",
+   "hex": "5c ac 06 4d",
+   "note": "capture lrf22vb-tool-capture-mm.txt value 1708",
+   "expect": {
+    "raw": 1708,
+    "metres": 1.708,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF22VB",
+   "family": "B",
+   "hex": "5c ad 06 4c",
+   "note": "capture lrf22vb-tool-capture-mm.txt value 1709",
+   "expect": {
+    "raw": 1709,
+    "metres": 1.709,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF22VB",
+   "family": "B",
+   "hex": "5c ae 06 4b",
+   "note": "capture lrf22vb-tool-capture-mm.txt value 1710",
+   "expect": {
+    "raw": 1710,
+    "metres": 1.71,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50H",
+   "family": "B",
+   "hex": "5c c4 00 3b",
+   "note": "capture lrf50h-tool-capture-cm.txt value 196",
+   "expect": {
+    "raw": 196,
+    "metres": 1.96,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50H",
+   "family": "B",
+   "hex": "5c be 00 41",
+   "note": "capture lrf50h-tool-capture-cm.txt value 190",
+   "expect": {
+    "raw": 190,
+    "metres": 1.9000000000000001,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50H",
+   "family": "B",
+   "hex": "5c c4 00 3b",
+   "note": "capture lrf50h-tool-capture-cm.txt value 196",
+   "expect": {
+    "raw": 196,
+    "metres": 1.96,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50H",
+   "family": "B",
+   "hex": "5c 08 7b 7c",
+   "note": "capture lrf50h-tool-capture-cm.txt value 31496",
+   "expect": {
+    "raw": 31496,
+    "metres": 314.96,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50H",
+   "family": "B",
+   "hex": "5c 71 90 fe",
+   "note": "capture lrf50h-tool-capture-cm.txt value 36977",
+   "expect": {
+    "raw": 36977,
+    "metres": 369.77,
+    "oor": false
+   }
+  },
+  {
+   "model": "LRF50H",
+   "family": "B",
+   "hex": "5c 08 9b 5c",
+   "note": "capture lrf50h-tool-capture-cm.txt value 39688",
+   "expect": {
+    "raw": 39688,
+    "metres": 396.88,
+    "oor": false
+   }
+  }
+ ],
+ "captures": {
+  "LRF22VB": {
+   "file": "lrf22vb-tool-capture-mm.txt",
+   "frames": 3000,
+   "min": 1708,
+   "max": 1710,
+   "sample": [
+    1709,
+    1708,
+    1709,
+    1708,
+    1709,
+    1710
+   ]
+  },
+  "LRF50H": {
+   "file": "lrf50h-tool-capture-cm.txt",
+   "frames": 2000,
+   "min": 189,
+   "max": 39688,
+   "sample": [
+    196,
+    190,
+    196,
+    31496,
+    36977,
+    39688
+   ]
+  }
+ },
+ "bad_checksum": "5c ad 06 b3",
+ "resync": {
+  "model": "LRF22VB",
+  "stream": "00 5c 5c ad 06 4c 5c ad 06 b3 5c ad 06 4c ff 5c ad",
+  "valid": [
+   "5c ad 06 4c",
+   "5c ad 06 4c"
+  ]
+ },
+ "a_stream": {
+  "model": "LRF3000A1",
+  "stream": "01 02 55 aa 88 01 ff 00 7b 06 55 aa 88 01 ff 00 7b 00 55 aa 88 01 ff 04 d2 e9",
+  "valid": []
+ }
+}

@@ -1,0 +1,34 @@
+---
+title: Serial monitor (browser)
+sidebar_position: 1
+description: "Test an ERDI laser rangefinder module in the browser with Web Serial: pick the model and baud rate, see distance and a live chart, export CSV. No install, no driver."
+---
+
+import SerialMonitor from '@site/src/components/SerialMonitor';
+
+Connect a module through a USB-TTL adapter, pick the model, and read distances live. The page runs entirely in your browser: bytes from the serial port are decoded locally and nothing is uploaded.
+
+- Works in Chrome and Edge on desktop (Web Serial API, HTTPS). It does not work in Firefox, Safari or on phones.
+- Covers the 22 models with a published protocol. For the others, [ask us](../models/more-models.md).
+- Wire the module first: [wiring and power](../get-started/wiring-and-power.md). Use the right supply for the model.
+
+<SerialMonitor />
+
+## How it decodes
+
+The frame logic is a JavaScript port of the [erdi-lrf](https://pypi.org/project/erdi-lrf/) Python package. The unit, frame length and out-of-range marker come from the per-model table, not from the protocol family: see [units and out-of-range](../protocols/units-and-out-of-range.md). A frame with a bad checksum is dropped and counted under Rejected, and the parser resynchronises on the next valid header.
+
+Family A modules (LR, SPD1200N, LRF1200A1, LRF3000A1) are polled: the monitor sends the single-shot request `55 AA 88 FF FF FF FF 84` at the poll rate you choose. Family B modules stream by themselves. LRF10VB, LRF22VB and LRF50VB also have start and stop commands, shown as buttons while connected.
+
+## Tests
+
+The decoder is tested against golden frames generated from the Python package for all 22 models, against frames rebuilt from two real factory capture logs, and against noisy and chunked streams. Run them from the repository: `npm test`.
+
+## Run it without hardware
+
+Run demo feeds simulated frames for the selected model through the same parser, so you can see the chart and CSV export.
+
+## Related
+
+- Paste-hex decoder: [checksum and frame decoder](../protocols/checksum-tool.mdx)
+- Source: [ErdiTech/erdi-docs](https://github.com/ErdiTech/erdi-docs) (MIT), file `src/lib/erdi-protocol.mjs`.

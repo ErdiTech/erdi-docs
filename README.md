@@ -1,0 +1,65 @@
+# ERDI Docs: developer documentation for laser rangefinder modules
+
+Source of the documentation site at **https://erdilrf.com/docs/**: UART protocols, wiring, code examples (Python, Arduino, ESPHome, ROS 2, ArduPilot Lua), a compatibility matrix with evidence links, and a **browser serial monitor** (Web Serial) for ERDI 905 nm laser rangefinder modules. Built with [Docusaurus](https://docusaurus.io/) 3.
+
+- Docs home: <https://erdilrf.com/docs/>
+- Serial monitor: <https://erdilrf.com/docs/tools/serial-monitor/>, works in Chrome and Edge on desktop, no install
+- Models with a published protocol: 22 (13 in family A `55 AA`, 9 in family B `5C`)
+
+## What is in this repository
+
+| Path | Content |
+|---|---|
+| `docs/` | Pages. `docs/models/*.mdx`, `docs/compatibility/_matrix.md` and the partials are generated, the rest is hand-written or synced |
+| `scripts/gen_models.py` | Generates model pages from the ERDI product database (`kb.json`). Cross-checks baud, frame length, unit and out-of-range marker against the erdi-lrf table and fails on any difference. Never writes prices |
+| `scripts/sync_repo_docs.py` | Copies protocol and guide pages from [erdi-lrf-drivers](https://github.com/ErdiTech/erdi-lrf-drivers) so there is one source |
+| `scripts/make_fixtures.py` | Builds the per-model wire table and golden test frames from erdi-lrf 0.1.4 (`vendor/`) |
+| `src/lib/erdi-protocol.mjs` | JavaScript frame codec (port of the Python package), used by the serial monitor |
+| `src/components/SerialMonitor/` | The Web Serial monitor (React), chart by [uPlot](https://github.com/leeoniya/uPlot) |
+| `test/protocol.test.mjs`, `fixtures/` | Unit tests: golden frames for all 22 models, frames rebuilt from two real factory capture logs, noisy and chunked streams |
+| `static/evidence/lua-sitl/` | Logs of the ArduPilot SITL run behind the Verified (SITL) matrix cells |
+
+## Develop
+
+```bash
+npm install
+npm test          # decoder unit tests (Node 20+)
+npm start         # dev server at http://localhost:3000/docs/
+npm run build     # static site in build/
+```
+
+The generated pages are committed, so CI needs neither the product database nor Python. To regenerate them you need the database checkout: `ERDI_KB_DIR=/path/to/erdi-kb npm run gen`.
+
+## Rules for contributors
+
+- A number goes on a model page only if the product database has it. No source, no field.
+- A matrix cell may say Verified only with evidence you can open. Everything else says Untested or No driver yet.
+- No prices in the docs. The buy button links to the shop.
+
+## Support
+
+tommy@erdimail.com, +86 133 0819 5790, <https://erdilrf.com/contact/>
+
+## Support / 打赏
+
+If this project saved you time, you can buy the author a coffee in crypto. Thank you!
+如果这个项目帮到了你，欢迎用加密货币打赏支持，谢谢！
+
+| Network | Asset | Address |
+|---|---|---|
+| TRON (TRC20) | USDT | `TNGdTwE6opH6rmUyoG1JUR7FSyEb4k273R` |
+| Ethereum / BNB Chain / Polygon | USDT | `0x59c43144a862b351fa1086ae842d1327c9d91613` |
+| Ethereum / Arbitrum / Base | ETH | `0x59c43144a862b351fa1086ae842d1327c9d91613` |
+| Bitcoin | BTC | `1RS6tWXHregLfEsiPzVUCUBuhgDg5uTSV` |
+| Solana | USDT | `HZguEXfTtLChNdJTxAYCbcGscaqikz8JYrEpUhEyeVd9` |
+
+Please send only the listed asset on the listed network — other tokens or networks may be lost.
+请按表中对应的网络转对应的币种，转错币种或网络可能无法找回。
+
+
+## License
+
+## License
+
+Code: MIT, see [LICENSE](LICENSE). Documentation text: CC BY 4.0. The model specifications come from ERDI datasheets.
+Copyright (c) 2026 ERDI TECH LTD.

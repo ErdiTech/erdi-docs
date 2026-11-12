@@ -1,0 +1,25 @@
+---
+title: Choose a module
+sidebar_position: 1
+description: "How to choose an ERDI laser rangefinder module for an integration: range, supply voltage, interface and protocol family, with a comparison of the 22 models that have a published protocol."
+---
+
+import Compare from './_compare.md';
+
+Start with the constraints that decide the integration, in this order.
+
+1. **Range and target.** The datasheet range is given at a stated target reflectivity. Real reach depends on target, weather and ambient light. Read the condition column on the model page, and plan for a margin.
+2. **Supply voltage.** It decides whether the module can share a rail with your host. Some modules run from 3.3 V, some from 3.3 to 5 V, and the H series needs 9 to 36 V, so it cannot be powered from a 5 V flight-controller port.
+3. **Protocol family.** Family A modules wait for a command and answer (115200 baud). Family B modules stream frames on their own (460800 baud). A streaming module is easier for a flight controller or logger, a polled module is easier when you want one reading on demand.
+4. **Unit on the wire.** The VB series reports millimetres, the H series centimetres, family A metres multiplied by 10. Always select the exact model in your software.
+5. **Wavelength.** 905 nm and 1535 nm modules exist. The [905 nm versus 1535 nm](../guides/905nm-vs-1535nm.md) note explains the trade. This site documents the 905/940 nm models with a published protocol; the 1535 nm modules are on request, see [other models](../models/more-models.md).
+
+For parametric filtering across the whole catalogue use the [selector](https://erdilrf.com/selector/) on erdilrf.com.
+
+## Comparison of the 22 documented models
+
+Values are copied from each model's datasheet. Follow the model link for the full specification.
+
+<Compare />
+
+Prices are on the model pages of [erdilrf.com](https://erdilrf.com/models/). Shipping is included.

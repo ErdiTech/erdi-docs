@@ -1,0 +1,76 @@
+---
+title: ArduPilot laser rangefinder (Lua, RNGFND1_TYPE=36)
+sidebar_label: ArduPilot
+sidebar_position: 1
+description: "Use an ERDI UART laser rangefinder module with ArduPilot today through a Lua scripting driver (RNGFND1_TYPE=36). Parameters, wiring, limits, SITL evidence, and the status of the native driver pull request."
+---
+
+import LuaParams from './_lua-params.md';
+
+:::caution Status, checked 2026-11-13
+- **Lua script route:** works on stock ArduPilot firmware with scripting. In ArduPilot SITL the script decodes a family B centimetre frame correctly. It has **not** been flight-tested on a flight controller.
+- **Native C++ driver:** [ArduPilot pull request #34983](https://github.com/ArduPilot/ardupilot/pull/34983) is open and waiting for review. It is not merged and is not in any firmware release.
+- ERDI modules are **not** described as supported by ArduPilot on this site, and will not be until upstream merges and documents a driver. Bench-test with propellers off before any flight.
+:::
+
+## Route 1: Lua script (no upstream change needed)
+
+ArduPilot's rangefinder backend `RNGFND1_TYPE=36` takes distances from a Lua script. The ERDI script reads the module on a scripting serial port and hands the distance to the backend.
+
+Requirements on the flight controller:
+
+- Flash larger than 1 MB. Pixhawk 6C/6X, Cube Orange and H743-class boards qualify. F4 boards and 1 MB boards do not run scripting (ArduPilot wiki: Lua scripts need at least 2 MB flash, 80 kB RAM and an SD card).
+- An SD card for the script.
+
+Steps:
+
+1. Wire a free UART: module TX to flight controller RX, module RX to TX, common ground. Power the module from a supply that fits its datasheet. H series modules need 9 to 36 V and must not use the 5 V telemetry pin. See [wiring and power](../get-started/wiring-and-power.md).
+2. Set parameters and reboot:
+
+   | Parameter | Value |
+   |---|---|
+   | `SCR_ENABLE` | 1 |
+   | `SCR_HEAP_SIZE` | 150000 or more |
+   | `SERIAL2_PROTOCOL` | 28 (Scripting), for the port you wired |
+   | `RNGFND1_TYPE` | 36 (Lua scripts) |
+   | `RNGFND1_ORIENT` | 25 (downward) |
+   | `RNGFND1_MIN`, `RNGFND1_MAX` | metres, from the datasheet range of your model |
+
+3. Copy [`erdi_lrf.lua`](https://github.com/ErdiTech/erdi-lrf-pixhawk-ardupilot/blob/main/scripts/erdi_lrf.lua) to `APM/scripts/` on the SD card (Mission Planner can upload it over MAVFTP) and reboot.
+4. Set the script parameters for your model, then reboot again:
+
+<LuaParams />
+
+   Other script parameters: `ERDI_SP` (index of the scripting serial port, 1 = first), `ERDI_POLL_MS` (family A poll period, 50 to 1000 ms). Full reference: [parameters.md](https://github.com/ErdiTech/erdi-lrf-pixhawk-ardupilot/blob/main/docs/parameters.md).
+
+5. Compare the `RFND` log entry or the ground-station rangefinder display with a tape measure. Checklist: [hardware test checklist](https://github.com/ErdiTech/erdi-lrf-pixhawk-ardupilot/blob/main/docs/hardware-test-checklist.md).
+
+### Limits you should know
+
+- ArduPilot declares the rangefinder as having no data if nothing arrives for 500 ms. Family A modules polled at 1 to 2 Hz at long range can drop in and out of "No Data". Poll faster or use a streaming model.
+- The scripting heap and CPU use were not measured over a long run. Treat long-duration stability as untested.
+- Only the family B centimetre frame has been exercised in SITL (see below). The millimetre frames of the VB series, the 5-byte LRF1500H frame and family A polling have not.
+
+### What was verified, exactly
+
+ArduPilot SITL (the PR branch build, based on ArduPilot master of 2026-11) was run with `RNGFND1_TYPE=36` and the unmodified `erdi_lrf.lua` with its default parameters (family B, 4-byte frame, centimetres, out-of-range marker 65535). A feeder sent synthetic frames to the simulated serial port:
+
+- 1234 cm frames at 100 Hz: the flight controller reported a `DISTANCE_SENSOR` of 1234 cm (12.34 m).
+- The marker 65535: reported as 5100 cm, which is `RNGFND1_MAX` (50 m) plus 1 m, the backend's out-of-range-high value.
+- Stream stopped: `PreArm: Rangefinder 1: No Data`.
+- 184 `DISTANCE_SENSOR` messages in the run, no Lua errors.
+
+The synthetic frames are not a physical module on a flight controller. Evidence files: [SITL evidence](../compatibility/evidence-lua-sitl.md).
+
+## Route 2: native driver (pull request, not merged)
+
+[PR #34983](https://github.com/ArduPilot/ardupilot/pull/34983), "AP_RangeFinder: add ERDI VB and H series serial rangefinders", adds a C++ backend and a SITL simulator:
+
+- `RNGFNDx_TYPE = 49`: LRF10VB, LRF22VB, LRF50VB (millimetres)
+- `RNGFNDx_TYPE = 50`: LRF50H, LRF100H, LRF200H, LRF300H, LRF600H (centimetres)
+
+Its automated checks pass and it is waiting for a maintainer review. A factory bench run of an LRF22VB and an LRF50H through a USB-TTL adapter is in the [bench evidence](https://github.com/ErdiTech/erdi-lrf-drivers/tree/main/docs/evidence/ardupilot-bench-20261105). Flight-controller logs are still to come. Native drivers merged now would first ship in the next ArduPilot release series.
+
+## Option 3: companion computer
+
+A Raspberry Pi or Jetson can read the module and send MAVLink `DISTANCE_SENSOR` to the flight controller, which works on any board: see [Raspberry Pi and Jetson](raspberry-pi-jetson.md) and [PX4](px4.md).

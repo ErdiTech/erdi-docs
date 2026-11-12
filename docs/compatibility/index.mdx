@@ -1,0 +1,28 @@
+---
+title: Compatibility matrix
+sidebar_label: Compatibility
+sidebar_position: 1
+description: "Which ERDI laser rangefinder models have been tested on which platforms, with evidence links. Verified means evidence you can open; everything else says Untested or No driver yet."
+---
+
+import Matrix from './_matrix.md';
+
+The matrix lists what has been tested, not what we hope works. Four words are used.
+
+| Status | Meaning |
+|---|---|
+| **Native** | The upstream project has merged and released a driver. Currently no row has this. |
+| **Verified (SITL)** | Run in a simulator with the evidence linked. Not a physical flight controller. |
+| **Verified (bench)** | A physical module and a host were tested, evidence linked. Currently no platform cell has this. |
+| **Untested** | Code exists, nobody has run it against this model on this platform. |
+
+Two more labels describe code that does not exist yet: **No driver yet** (the library has no entry for the model) and **In review** (a pull request is open, not merged). We do not write that any platform supports ERDI modules until upstream says so.
+
+<Matrix />
+
+## Evidence
+
+- ArduPilot Lua, SITL: [evidence page](evidence-lua-sitl.md). It covers the family B centimetre frame (LRF50H to LRF600H) with synthetic frames. The VB, LRF1500H and family A cells stay Untested.
+- Real modules: a factory capture of an LRF22VB and an LRF50H with the vendor serial tool confirms the wire units (about 1709 in millimetres and about 196 in centimetres at a 1.9 m wall). It does not exercise any platform in this table: [capture notes](https://github.com/ErdiTech/erdi-lrf-drivers/tree/main/docs/evidence/ardupilot-bench-20261105).
+
+Status date: 2026-11-13. If you test a cell, send us the log and we add it: tommy@erdimail.com or [GitHub issues](https://github.com/ErdiTech/erdi-docs/issues).

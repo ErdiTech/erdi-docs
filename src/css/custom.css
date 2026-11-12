@@ -1,0 +1,68 @@
+:root {
+  --ifm-color-primary: #c2410c;
+  --ifm-color-primary-dark: #ae3b0b;
+  --ifm-color-primary-darker: #a4390b;
+  --ifm-color-primary-darkest: #863009;
+  --ifm-color-primary-light: #d6490d;
+  --ifm-color-primary-lighter: #e04f10;
+  --ifm-color-primary-lightest: #f2682a;
+  --ifm-code-font-size: 92%;
+  --ifm-table-cell-padding: 0.4rem 0.7rem;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #fb923c;
+  --ifm-color-primary-dark: #fa7a18;
+  --ifm-color-primary-darker: #fa700b;
+  --ifm-color-primary-darkest: #d25b05;
+  --ifm-color-primary-light: #fca765;
+  --ifm-color-primary-lighter: #fcb274;
+  --ifm-color-primary-lightest: #fdcc9f;
+}
+
+.erdi-lead {
+  font-size: 1.1rem;
+  color: var(--ifm-color-emphasis-800);
+  margin-bottom: 0.75rem;
+}
+
+.erdi-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.erdi-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.erdi-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 10px;
+  color: var(--ifm-font-color-base);
+  text-decoration: none;
+}
+
+.erdi-card:hover {
+  border-color: var(--ifm-color-primary);
+  text-decoration: none;
+  color: var(--ifm-font-color-base);
+}
+
+.erdi-card span {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.markdown table {
+  display: block;
+  overflow-x: auto;
+}
