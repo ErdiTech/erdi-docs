@@ -13,10 +13,10 @@ SSH=(ssh -i "$KEY" -o ConnectTimeout=15 -o BatchMode=yes "$HOST")
 
 case "${1:-deploy}" in
   list)
-    timeout 60 "${SSH[@]}" "ls -1 $ROOT/releases; echo current -> \$(readlink $ROOT/current)"
+    timeout 60 "${SSH[@]}" "ls -1 $ROOT/releases; echo current = \$(readlink $ROOT/current)"
     ;;
   rollback)
-    timeout 60 "${SSH[@]}" "set -e; cur=\$(basename \$(readlink $ROOT/current)); prev=\$(ls -1 $ROOT/releases | grep -B1 -x \$cur | head -1); [ \"\$prev\" != \"\$cur\" ] || { echo 'no earlier release'; exit 1; }; ln -sfn $ROOT/releases/\$prev $ROOT/current; echo current -> \$prev"
+    timeout 60 "${SSH[@]}" "set -e; cur=\$(basename \$(readlink $ROOT/current)); prev=\$(ls -1 $ROOT/releases | grep -B1 -x \$cur | head -1); [ \"\$prev\" != \"\$cur\" ] || { echo no earlier release; exit 1; }; ln -sfn $ROOT/releases/\$prev $ROOT/current; echo current = \$prev"
     ;;
   deploy)
     [ -d build ] || { echo "run npm run build first"; exit 1; }
@@ -24,7 +24,7 @@ case "${1:-deploy}" in
     STAGE=$(mktemp -d)
     cp -r build "$STAGE/docs"
     tar -czf - -C "$STAGE" docs | timeout 300 "${SSH[@]}" "mkdir -p $ROOT/releases/$TS && tar -xzf - -C $ROOT/releases/$TS && chown -R root:root $ROOT/releases/$TS && find $ROOT/releases/$TS -type d -exec chmod 755 {} + && find $ROOT/releases/$TS -type f -exec chmod 644 {} +"
-    timeout 60 "${SSH[@]}" "ln -sfn $ROOT/releases/$TS $ROOT/current; echo current -> $TS"
+    timeout 60 "${SSH[@]}" "ln -sfn $ROOT/releases/$TS $ROOT/current; echo \"current = $TS\""
     rm -rf "$STAGE"
     ;;
 esac
