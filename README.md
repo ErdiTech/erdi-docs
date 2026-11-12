@@ -30,6 +30,26 @@ npm run build     # static site in build/
 
 The generated pages are committed, so CI needs neither the product database nor Python. To regenerate them you need the database checkout: `ERDI_KB_DIR=/path/to/erdi-kb npm run gen`.
 
+## Deploy
+
+The site is static. `scripts/deploy.sh` uploads `build/` as a new release directory and repoints a `current` symlink, so a rollback is one command (`scripts/deploy.sh rollback`). nginx serves it with:
+
+```nginx
+location = /docs { return 301 /docs/; }
+location ^~ /docs/ {
+    root /var/www/erdilrf-docs/current;
+    if (-d $request_filename) { rewrite ^(.*[^/])$ $1/ permanent; }
+    try_files $uri $uri/index.html =404;
+    error_page 404 /docs/404.html;
+    add_header Cache-Control "public, max-age=600" always;
+}
+location ^~ /docs/assets/ {
+    root /var/www/erdilrf-docs/current;
+    try_files $uri =404;
+    add_header Cache-Control "public, max-age=31536000, immutable" always;
+}
+```
+
 ## Rules for contributors
 
 - A number goes on a model page only if the product database has it. No source, no field.
