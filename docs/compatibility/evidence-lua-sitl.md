@@ -16,7 +16,7 @@ This page is the evidence behind the **Verified (SITL)** cells of the [compatibi
 
 ## Result
 
-[reader.log](pathname:///docs/evidence/lua-sitl/reader.log), lines that matter:
+[reader.txt](pathname:///docs/evidence/lua-sitl/reader.txt), lines that matter:
 
 ```text
 [ 11.0] DISTANCE_SENSOR: 1234
@@ -30,7 +30,7 @@ counts {'DISTANCE_SENSOR': 184}
 - After the stream stopped, the rangefinder was reported as having no data.
 - No Lua errors in the run.
 
-Raw logs: [sitl.log](pathname:///docs/evidence/lua-sitl/sitl.log), [feeder.log](pathname:///docs/evidence/lua-sitl/feeder.log).
+Raw logs: [sitl.txt](pathname:///docs/evidence/lua-sitl/sitl.txt), [feeder.txt](pathname:///docs/evidence/lua-sitl/feeder.txt).
 
 ## What this does not show
 
