@@ -30,4 +30,4 @@ It sends `DISTANCE_SENSOR` in centimetres, laser type, downward orientation by d
 
 ## INAV and Betaflight
 
-There is no ERDI driver for INAV or Betaflight. A bridge firmware that converts ERDI frames to MSP is not available yet.
+There is no ERDI driver for INAV or Betaflight and no bridge firmware yet. The alternatives (ArduPilot Lua driver, or a companion computer bridge) are on the [INAV and Betaflight page](./inav-betaflight.md).

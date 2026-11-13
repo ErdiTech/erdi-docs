@@ -69,6 +69,7 @@ const config: Config = {
     ],
   ],
 
+  clientModules: [require.resolve('./src/clientModules/a11y-copy-button.js')],
   plugins: [
     'docusaurus-plugin-copy-page-button',
     [
