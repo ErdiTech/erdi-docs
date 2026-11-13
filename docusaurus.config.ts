@@ -69,8 +69,9 @@ const config: Config = {
     ],
   ],
 
-  clientModules: [require.resolve('./src/clientModules/a11y-copy-button.js')],
+  clientModules: [require.resolve('./src/clientModules/a11y-copy-button.js'), require.resolve('./src/clientModules/canonical-fix.js')],
   plugins: [
+    require.resolve('./plugins/canonical-overrides.js'),
     'docusaurus-plugin-copy-page-button',
     [
       'docusaurus-plugin-llms',
